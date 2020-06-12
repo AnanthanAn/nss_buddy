@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nssbuddy/screens/add_event_screen.dart';
+import 'package:nssbuddy/widgets/drawer.dart';
+import 'package:nssbuddy/widgets/event_list.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -11,26 +14,14 @@ class HomeScreen extends StatelessWidget {
           style: GoogleFonts.kanit(),
         ),
       ),
+      drawer: HamDrawer(),
       body: Column(
         children: <Widget>[
-          Text('Upcoming Events'),
-          Card(
-            margin: EdgeInsets.all(10),
-            elevation: 5,
-            color: Colors.greenAccent,
-            child: Container(height: 100,width: double.infinity,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Title',
-                    style: TextStyle(fontSize: 26),textAlign: TextAlign.center,
-                  )
-                ],
-              ),
-            ),
-          ),
+          Expanded(child: EventListView()),
         ],
-      ),
+      ),floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.pushNamed(context, AddNewEventScreen.routeName);
+    }),
     );
   }
 }

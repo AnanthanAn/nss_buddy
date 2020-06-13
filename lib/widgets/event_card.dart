@@ -1,10 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class EventCard extends StatelessWidget {
   final String title;
+  final String location;
+  final String date;
+  final String imageUrl;
 
-  EventCard({@required this.title});
+  EventCard(
+      {@required this.title,
+      @required this.location,
+      @required this.date,
+      this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class EventCard extends StatelessWidget {
               width: double.infinity,
               height: 250,
               child: Image.network(
-                'https://images.unsplash.com/photo-1591040092219-081fb773589c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+                imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -38,13 +44,13 @@ class EventCard extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Icon(Icons.place),
-                        Text('Kayamkulam'),
+                        Text(location),
                       ],
                     ),
                     Row(
                       children: <Widget>[
                         Icon(Icons.date_range),
-                        Text('10 Jun 2020'),
+                        Text(date),
                       ],
                     ),
                   ],

@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           Expanded(child: EventListView()),
         ],
       ),floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.pushNamed(context, AddNewEventScreen.routeName);
+        Navigator.pushNamed(context, AddNewEventScreen.routeName).whenComplete(() => build(context));
     }),
     );
   }

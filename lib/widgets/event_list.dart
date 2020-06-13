@@ -4,11 +4,10 @@ import 'package:nssbuddy/helpers/firestore_helper.dart';
 import 'package:nssbuddy/widgets/event_card.dart';
 
 class EventListView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future:FirestoreHelper().getEventPosts(),
+        future: FirestoreHelper.getEventPosts(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -17,7 +16,12 @@ class EventListView extends StatelessWidget {
           }
           return ListView.builder(
             itemCount: snapshot.data.documents.length,
-            itemBuilder: (context, idx) => EventCard(title: snapshot.data.documents[idx]['title'],),
+            itemBuilder: (context, idx) => EventCard(
+              title: snapshot.data.documents[idx]['title'],
+              location: snapshot.data.documents[idx]['location'],
+              date: snapshot.data.documents[idx]['date'],
+              imageUrl: snapshot.data.documents[idx]['imageUrl'],
+            ),
           );
         });
   }
